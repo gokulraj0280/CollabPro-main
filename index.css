@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Premium Light Mode */
+    --background: 210 40% 98%;
+    /* Light Slate */
+    --foreground: 222.2 84% 4.9%;
+    /* Deep Slate 900 */
+
+    --card: 0 0% 100%;
+    /* Pure White */
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 263 70% 50%;
+    /* Brand Purple */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 91% 60%;
+    /* Brand Blue */
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 263 70% 50%;
+
+    --chart-5: 45 100% 50%;
+
+    /* Typography Selection */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  /* Custom Scrollbar Styles */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsla(var(--background), 0.5);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsla(var(--primary), 0.7);
+    border-radius: 10px;
+    border: 2px solid hsla(var(--background), 0.5);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsla(var(--primary), 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    background-image:
+      radial-gradient(at 0% 0%, hsla(263, 70%, 50%, 0.03) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(180, 100%, 50%, 0.03) 0px, transparent 50%),
+      /* Enhanced background pattern: very subtle grid */
+      linear-gradient(to right, hsla(var(--primary), 0.015) 1px, transparent 1px),
+      linear-gradient(to bottom, hsla(var(--primary), 0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-glass;
+  }
+
+  .neon-border {
+    @apply relative overflow-hidden;
+  }
+
+  .neon-border::after {
+    content: '';
+    @apply absolute inset-0 rounded-[inherit] border border-primary/20 pointer-events-none;
+    box-shadow: inset 0 0 10px hsla(var(--primary), 0.05);
+  }
+
+  .data-stream-text {
+    @apply relative inline-block;
+    background: linear-gradient(90deg, currentColor 0%, currentColor 50%, transparent 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: stream-text 2s infinite linear;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  @keyframes stream-text {
+    0% {
+      background-position: 100% 0%;
+    }
+
+    100% {
+      background-position: -100% 0%;
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Quantum Theme Scanline Effect */
+  .scanline-overlay {
+    @apply absolute inset-0 pointer-events-none z-50;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 1px,
+      hsla(var(--primary), 0.05) 1px,
+      hsla(var(--primary), 0.05) 2px
+    );
+    background-size: 100% 4px;
+    animation: scanline-scroll 10s linear infinite;
+  }
+
+  @keyframes scanline-scroll {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 400px; /* Adjust value for desired scroll distance */
+    }
+  }
+
+  /* Utility for subtle glow */
+  .glow-sm {
+    box-shadow: 0 0 5px hsla(var(--primary), 0.3);
+  }
+
+  .glow-md {
+    box-shadow: 0 0 15px hsla(var(--primary), 0.4);
+  }
+
+  /* Utility for animated border */
+  .border-animate {
+    @apply relative overflow-hidden;
+  }
+
+  .border-animate::before {
+    content: '';
+    @apply absolute inset-0 rounded-[inherit] border border-transparent;
+    background: linear-gradient(
+      to right,
+      hsla(var(--primary), 0.5),
+      hsla(var(--secondary), 0.5),
+      hsla(var(--primary), 0.5)
+    );
+    background-size: 200% 100%;
+    animation: border-gradient 3s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  @keyframes border-gradient {
+    0% {
+      background-position: 200% 0%;
+    }
+    100% {
+      background-position: -200% 0%;
+    }
+  }
+}

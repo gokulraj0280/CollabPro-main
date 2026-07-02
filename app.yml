@@ -1,0 +1,20 @@
+metadata:
+  favicon: ''
+  title: CollabSync Pro
+  description: ''
+  breakpoints: []
+  rendererCachingEnabled: true
+  skipDepsComparisonInCompilerCache: false
+  vibeAppPhase: impl
+  vibeAppAutoApplyMigrations: true
+  vibeAppConnectedDatasources:
+    - collabsync_pro_db
+appSettings:
+  properties:
+    defaultData: '{}'
+  actions: {}
+  gridVersion: 2
+  density: compact
+  hideRenderCachingSettings: false
+internalType: vibe_project
+id: 4mww1b1xgZ
